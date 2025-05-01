@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
+import { PrismaModule } from './prisma/prisma.module';
+import { ProductModule } from './product/product.module';
+import { PrismaService } from './prisma/prisma.service';
 
 @Module({
   imports: [
@@ -9,6 +12,8 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true, // Cho phép dùng ở mọi nơi không cần import lại
       envFilePath: `.env.${process.env.NODE_ENV || 'dev'}`,
     }),
+    PrismaModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
